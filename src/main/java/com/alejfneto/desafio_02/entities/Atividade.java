@@ -1,11 +1,18 @@
 package com.alejfneto.desafio_02.entities;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +25,19 @@ public class Atividade {
 	private String nome;
 	private String descricao;
 	private Double preco;
+	
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
+	private Categoria categoria;
+	
+	@OneToMany (mappedBy = "atividade")
+	private Set <Bloco> blocos = new HashSet<>();
+	
+	@ManyToMany
+	@JoinTable(name = "tb_participante_atividade",
+	joinColumns = @JoinColumn(name = "participante_id"),
+	inverseJoinColumns = @JoinColumn(name = "atividade_id"))
+	private Set <Participante> participantes = new HashSet<>();
 	
 	public Atividade() {
 	}
@@ -59,6 +79,18 @@ public class Atividade {
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Set<Bloco> getBlocos() {
+		return blocos;
 	}
 
 	@Override
