@@ -1,6 +1,8 @@
 package com.alejfneto.desafio_02.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -37,7 +39,7 @@ public class Atividade {
 	@JoinTable(name = "tb_participante_atividade",
 	joinColumns = @JoinColumn(name = "participante_id"),
 	inverseJoinColumns = @JoinColumn(name = "atividade_id"))
-	private Set <Participante> participantes = new HashSet<>();
+	private List <Participante> participantes = new ArrayList<>();
 	
 	public Atividade() {
 	}
@@ -91,6 +93,10 @@ public class Atividade {
 
 	public Set<Bloco> getBlocos() {
 		return blocos;
+	}
+
+	public List<Participante> getParticipantes() {
+		return participantes;
 	}
 
 	@Override

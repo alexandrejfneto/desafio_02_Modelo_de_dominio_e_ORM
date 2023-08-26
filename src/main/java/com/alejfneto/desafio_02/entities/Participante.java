@@ -1,8 +1,8 @@
 package com.alejfneto.desafio_02.entities;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +22,7 @@ public class Participante {
 	private String email;
 	
 	@ManyToMany(mappedBy = "participantes")
-	private Set <Atividade> atividades = new HashSet<>();
+	private List <Atividade> atividades = new ArrayList<>();
 
 	public Participante () {
 	}
@@ -57,7 +57,7 @@ public class Participante {
 		this.email = email;
 	}
 
-	public Set<Atividade> getAtividades() {
+	public List<Atividade> getAtividades() {
 		return atividades;
 	}
 
