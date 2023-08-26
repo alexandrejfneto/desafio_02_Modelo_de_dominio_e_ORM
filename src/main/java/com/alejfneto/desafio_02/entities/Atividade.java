@@ -41,7 +41,7 @@ public class Atividade {
 	@JoinTable(name = "tb_participante_atividade",
 	joinColumns = @JoinColumn(name = "atividade_id"),
 	inverseJoinColumns = @JoinColumn(name = "participante_id"))
-	private List <Participante> participantes = new ArrayList<>();
+	private Set <Participante> participantes = new HashSet<>();
 	
 	public Atividade() {
 	}
@@ -97,7 +97,7 @@ public class Atividade {
 		return blocos;
 	}
 
-	public List<Participante> getParticipantes() {
+	public Set<Participante> getParticipantes() {
 		return participantes;
 	}
 
@@ -123,4 +123,11 @@ public class Atividade {
 		return "Atividade [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + "]";
 	}
 	
+	public void addParticipante (Participante p) {
+		participantes.add(p);
+	}
+	
+	public void removeParticipante (Participante p) {
+		participantes.remove(p);
+	}
 }
