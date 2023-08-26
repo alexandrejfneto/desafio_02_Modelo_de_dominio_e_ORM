@@ -1,11 +1,13 @@
 package com.alejfneto.desafio_02.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +22,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "tb_atividade")
 public class Atividade {
-	
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -37,8 +39,8 @@ public class Atividade {
 	
 	@ManyToMany
 	@JoinTable(name = "tb_participante_atividade",
-	joinColumns = @JoinColumn(name = "participante_id"),
-	inverseJoinColumns = @JoinColumn(name = "atividade_id"))
+	joinColumns = @JoinColumn(name = "atividade_id"),
+	inverseJoinColumns = @JoinColumn(name = "participante_id"))
 	private List <Participante> participantes = new ArrayList<>();
 	
 	public Atividade() {
